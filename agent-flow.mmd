@@ -1,0 +1,32 @@
+flowchart TB
+    subgraph MAIN["素材裂变主流程"]
+        direction LR
+        A["01 综合输入<br/>商品与品牌信息 · 原始素材<br/>素材结构信息 · 制作要求"]
+        B["02 素材理解与人工确认<br/>识别结构、品牌元素与商品事实<br/>确认来源、置信度和锁定项"]
+        C["03 批准裂变策略<br/>选择投放环境与探索比例<br/>定义变化内容、目标人群和指标"]
+        D["04 生成与自动质检<br/>生成真实差异版本<br/>检查事实、品牌、平台与重复度"]
+        E["05 人工审批与小流量投放<br/>采用、拒绝或单点重做<br/>批准后才允许导出"]
+        A --> B --> C --> D --> E
+    end
+
+    E -->|"投放表现回传"| F["06 投放学习<br/>同受众、预算、版位和时间窗口<br/>回收 CTR、CVR、消耗与疲劳趋势"]
+    F --> G{"结果达到可信门槛？<br/>样本量 · 提升幅度 · 风险 · 成本"}
+
+    G -->|"继续放大"| H["继承胜出结构<br/>保留探索比例"]
+    G -->|"改变方向"| I["切换价值主张<br/>或叙事结构"]
+    G -->|"停止投入"| J["归档素材家族<br/>本轮结束"]
+
+    H -. "形成第二代任务" .-> C
+    I -. "形成第二代任务" .-> C
+
+    classDef agent fill:#EEF1FF,stroke:#536CF4,stroke-width:2px,color:#172033;
+    classDef human fill:#FFF5E5,stroke:#F2AD45,stroke-width:2px,color:#172033;
+    classDef learn fill:#E9F9F2,stroke:#35B982,stroke-width:2px,color:#172033;
+    classDef decision fill:#202D48,stroke:#202D48,stroke-width:2px,color:#FFFFFF;
+    classDef stop fill:#FFF0EF,stroke:#D65B51,stroke-width:2px,color:#6F2924;
+
+    class A,D agent;
+    class B,C,E human;
+    class F,H,I learn;
+    class G decision;
+    class J stop;
